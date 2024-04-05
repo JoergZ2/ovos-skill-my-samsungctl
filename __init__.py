@@ -10,10 +10,68 @@ import os
 import time
 import samsungctl
 
+DEFAULT_SETTINGS = {
+    "tv": "192.168.178.91",
+    "port": 55000,
+    "placement": "Stube",
+    "method": "legacy",
+    "rc_name": "Ovos",
+    "description_rc": "Beschreibung",
+    "translations": {
+        "hoch": "UP",
+        "höher": "UP",
+        "links": "LEFT",
+        "rechts": "RIGHT",
+        "rauf": "UP",
+        "tiefer": "DOWN",
+        "runter": "DOWN",
+        "nehmen": "ENTER",
+        "verlassen": "EXIT"
+    },
+    "stations": {
+        "das_erste": 1,
+        "erstes_programm": 1,
+        "zdf": 2,
+        "zweites_programm": 2,
+        "ndr": 101,
+        "3sat": 11,
+        "arte": 153,
+        "one": 127,
+        "zdf_neo": 202,
+        "phoenix": 152,
+        "phönix": 152,
+        "zdf_info": 201,
+        "vox": 1204,
+        "sat_1": 1205,
+        "pro_sieben": 1206,
+        "pro_7": 1206,
+        "prosieben": 1206,
+        "kabel_1": 1207,
+        "rtl": 315,
+        "rtl_2": 1209,
+        "super_rtl": 1219,
+        "ntv": 1264,
+        "rtl_nitro": 1265,
+        "rbb": 24,
+        "br": 31,
+        "bayerischer_rundfunk": 31,
+        "hr": 32,
+        "hessischer_rundfunk": 32,
+        "bw": 33,
+        "baden-württemberg": 33,
+        "wdr": 110,
+        "westdeutscher_rundfunk": 110,
+        "mdr": 115,
+        "mitteldeutscher_rundfunk": 115,
+        "ard_alpha": 125,
+        "tagesschau_24": 126,
+        "radio_bremen": 1128
+    }
+}
 
-class MySamsungTvRc(MycroftSkill):
+class SamsungTVCtl(MycroftSkill):
     def __init__(self):
-        super(MySamsungTvRc, self).__init__(name="MySamsungTV")
+        super(SamsungTVCtl, self).__init__(name="SamsungTVCtl")
 
     @classproperty
     def runtime_requirements(self):
@@ -287,5 +345,5 @@ class MySamsungTvRc(MycroftSkill):
         pass
 
 def create_skill():
-    return MySamsungTvRc()
+    return SamsungTVCtl()
 
