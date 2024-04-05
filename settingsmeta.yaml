@@ -1,0 +1,42 @@
+skillMetadata:
+  sections:
+    - name: Samsung TV
+      fields:
+        - name: tv
+          type: text
+          label: Standard TV (IP 1)
+          value:
+          placeholder: localhost
+        - name: port
+          type: number
+          label: Port
+          value: 55000
+          placeholder: 55000
+        - name: placement
+          type: text
+          label: Placement
+          value: Stube
+          placeholder: room1
+        - name: method
+          type: select
+          label: Choose method legacy or websocket
+          options: legacy (default)|legacy; websocket|websocket
+          value: legacy
+          placeholder: legacy
+        - name: rc_name
+          type: text
+          label: Name of RC
+          value: Mycroft
+        - name: description_rc
+          type: text
+          label: Description of RC
+          value: Description
+          placeholder: Description
+        - name: translations
+          type: text
+          label: Your words for left, right, up, down, take and leave
+          value:
+          placeholder: left,right,up,down,take,leave
+
+
+
