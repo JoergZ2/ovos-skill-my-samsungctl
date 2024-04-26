@@ -20,15 +20,17 @@ DEFAULT_SETTINGS = {
     "translations": {
         "hoch": "UP",
         "höher": "UP",
-        "links": "LEFT",
-        "rechts": "RIGHT",
         "rauf": "UP",
+        "nach_oben": "UP",
         "tiefer": "DOWN",
         "runter": "DOWN",
+        "nach_unten": "DOWN",
+        "links": "LEFT",
+        "rechts": "RIGHT",
         "nehmen": "ENTER",
         "verlassen": "EXIT"
     },
-    "stations": {
+    "channels": {
         "das_erste": 1,
         "erstes_programm": 1,
         "zdf": 2,
@@ -104,7 +106,7 @@ class SamsungTVCtl(MycroftSkill):
         #self.curs_move_dict = {self.trans[0]: 'LEFT', self.trans[1]: 'RIGHT', \
             #self.trans[2]: 'UP', self.trans[3]: 'DOWN', \
             #self.trans[4]: 'ENTER', self.trans[5]: 'EXIT'}
-        self.stations = self.settings.get('stations')
+        self.channels = self.settings.get('channels')
 
         self.config = {"name": self.name_rc, "description": self.description_rc,\
             "id": "", "host": self.host, "port": self.port, "method": self.method,\
@@ -150,7 +152,7 @@ class SamsungTVCtl(MycroftSkill):
         move = ""
         return move
 
-    def cursor_recursion(self, move):
+"""    def cursor_recursion(self, move):
         '''Recursive function to handle cursor movements'''
         move = self.get_response('cursor_dummy',0)
         if move == None:
@@ -169,7 +171,7 @@ class SamsungTVCtl(MycroftSkill):
         self.send_keycode(keycode)
         move = ""
         self.cursor_recursion(move)
-
+"""
     def cursor_recursion2(self, move):
         move = self.get_response()
         if move != None:
@@ -196,28 +198,28 @@ class SamsungTVCtl(MycroftSkill):
             keycode = "EXIT"
             self.send_keycode(keycode)
 
-    def switch_by_station_name(self, station):
-        station = station.replace(' ','_').lower()
-        station = self.check_station(station)
-        station = str(station)
-        self.send_channel_pos(station)
+    def switch_by_channel_name(self, channel):
+        channel = channel.replace(' ','_').lower()
+        channel = self.check_channel(channel)
+        channel = str(channel)
+        self.send_channel_pos(channel)
 
-    #checks if spoken station is in station list (settings.json); if true fetch station number
-    def check_station(self, station):
-        station_wrong = station
-        LOG.info("Station ist: " + str(station))
-        station = self.stations.get(station, None)
-        if station != None:
-            return station
+    #checks if spoken channel is in channel list (settings.json); if true fetch channel number
+    def check_channel(self, channel):
+        channel_wrong = channel
+        LOG.info("channel ist: " + str(channel))
+        channel = self.channels.get(channel, None)
+        if channel != None:
+            return channel
         else:
-            self.speak_dialog('station_error',{'station': station_wrong})
+            self.speak_dialog('channel_error',{'channel': channel_wrong})
 
 ##Handlers
 #basic handlers
-    @intent_handler('station.by.name.intent')
-    def handle_station_by_name(self, message):
-        station = message.data.get('station')
-        self.switch_by_station_name(station)
+    @intent_handler('channel.by.name.intent')
+    def handle_channel_by_name(self, message):
+        channel = message.data.get('channel')
+        self.switch_by_channel_name(channel)
 
     @intent_handler('next_channel.intent')
     def handle_next_channel(self):
@@ -276,28 +278,28 @@ class SamsungTVCtl(MycroftSkill):
         keycode = "GUIDE"
         self.send_keycode(keycode)
         move = self.explain_cursor_moves(self.translations)
-        self.cursor_recursion(move)
+        self.cursor_recursion2(move)
 
     @intent_handler('source_dialog.intent')
     def handle_source(self):
         keycode = "SOURCE"
         self.send_keycode(keycode)
         move = self.explain_cursor_moves_source()
-        self.cursor_recursion(move)
+        self.cursor_recursion2(move)
 
     @intent_handler('smarthub_dialog.intent')
     def handle_smarthub(self):
         keycode = "CONTENTS"
         self.send_keycode(keycode)
         move = self.explain_cursor_moves()
-        self.cursor_recursion(move)
+        self.cursor_recursion2(move)
 
     @intent_handler('tools.intent')
     def handle_tools(self):
         keycode = "TOOLS"
         self.send_keycode(keycode)
         move = self.explain_cursor_moves()
-        self.cursor_recursion(move)
+        self.cursor_recursion2(move)
 
 #recording and playback handlers
     @intent_handler('pause.intent')
