@@ -6,7 +6,7 @@ from os import walk, path
 
 # TODO update this info!
 # Define package information
-SKILL_CLAZZ = "SamsungTVCtl"  # Make sure it matches __init__.py class name
+SKILL_CLAZZ = "SamsungTVCtrl"  # Make sure it matches __init__.py class name
 VERSION = "0.0.1"
 URL = "https://github.com/JoergZ2/ovos-skill-my-samsungctl"
 AUTHOR = "JoergZ2"

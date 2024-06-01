@@ -1,0 +1,115 @@
+Datei: channel_by_dialog.intent
+    fernseher senderliste
+    fernseher senderauswahl
+
+
+Datei: channel.by.name.intent
+    fernseher auf {channel} umschalten
+    fernseher umschalten auf {channel}
+    fernseher programm {channel}
+    fernseher sendername {channel}
+
+
+Datei: channel_list.intent
+    fernseher senderliste
+    fernseher kanalliste
+    fernseher senderübersicht
+    
+
+
+Datei: dtv.intent
+    fernseher (antenne | empfänger)
+
+
+Datei: fastforward.intent
+    Fernseher vorspulen
+
+
+Datei: hdmi.intent
+    fernseher (videorecorder | externe quelle | kodi)
+
+
+Datei: info.intent
+    fernseher info
+    fernseher details
+    
+
+
+Datei: menu_leave.intent
+    fernseher menü schließen
+    fernseher menü verlassen
+
+
+Datei: next_channel.intent
+    fernseher nächster sender
+    fernseher nächster kanal
+    fernseher weiter
+    fernseher nächster
+    
+
+
+Datei: pause.intent
+    (fernseher pause | fernseher timeshift)
+
+
+Datei: play.intent
+    fernseher aufzeichnung abspielen
+
+
+Datei: pos.intent
+    fernseher sender {pos_nr}
+    fernseher kanal {pos_nr}
+
+
+Datei: poweroff.intent
+    fernseher ausschalten
+
+
+Datei: prev_channel.intent
+    fernseher Sender zurück
+    fernseher Kanal zurück
+    fernseher vorheriger
+    
+
+
+Datei: program_guide_dialog.intent
+    fernseher programmübersicht
+    fernseher sendeplan
+
+
+Datei: record.intent
+    fernseher aufzeichnung starten
+
+
+Datei: rewind.intent
+    fernseher zurückspulen
+
+
+Datei: smarthub_dialog.intent
+    fernseher samsung programme
+    fernseher smart hub
+
+
+Datei: source_dialog.intent
+    fernseher auswahl (eingang | quelle)
+
+
+Datei: stop.intent
+    fernseher stoppen
+
+
+Datei: tools.intent
+    fernseher werkzeuge
+    fernseher werkzeug
+    fernseher tools
+    
+
+
+Datei: vol_down.intent
+    fernseher leiser
+
+
+Datei: vol_up.intent
+    fernseher lauter
+
+

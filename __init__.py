@@ -10,70 +10,9 @@ import os
 import time
 import samsungctl
 
-DEFAULT_SETTINGS = {
-    "tv": "192.168.178.91",
-    "port": 55000,
-    "placement": "Stube",
-    "method": "legacy",
-    "rc_name": "Ovos",
-    "description_rc": "Beschreibung",
-    "translations": {
-        "hoch": "UP",
-        "höher": "UP",
-        "rauf": "UP",
-        "nach_oben": "UP",
-        "tiefer": "DOWN",
-        "runter": "DOWN",
-        "nach_unten": "DOWN",
-        "links": "LEFT",
-        "rechts": "RIGHT",
-        "nehmen": "ENTER",
-        "verlassen": "EXIT"
-    },
-    "channels": {
-        "das_erste": 1,
-        "erstes_programm": 1,
-        "zdf": 2,
-        "zweites_programm": 2,
-        "ndr": 101,
-        "3sat": 11,
-        "arte": 153,
-        "one": 127,
-        "zdf_neo": 202,
-        "phoenix": 152,
-        "phönix": 152,
-        "zdf_info": 201,
-        "vox": 1204,
-        "sat_1": 1205,
-        "pro_sieben": 1206,
-        "pro_7": 1206,
-        "prosieben": 1206,
-        "kabel_1": 1207,
-        "rtl": 315,
-        "rtl_2": 1209,
-        "super_rtl": 1219,
-        "ntv": 1264,
-        "rtl_nitro": 1265,
-        "rbb": 24,
-        "br": 31,
-        "bayerischer_rundfunk": 31,
-        "hr": 32,
-        "hessischer_rundfunk": 32,
-        "bw": 33,
-        "baden-württemberg": 33,
-        "wdr": 110,
-        "westdeutscher_rundfunk": 110,
-        "mdr": 115,
-        "mitteldeutscher_rundfunk": 115,
-        "ard_alpha": 125,
-        "tagesschau_24": 126,
-        "radio_bremen": 1128
-    }
-}
-
-class SamsungTVCtl(MycroftSkill):
+class SamsungTVCtrl(MycroftSkill):
     def __init__(self):
-        super(SamsungTVCtl, self).__init__(name="SamsungTVCtl")
+        super(SamsungTVCtrl, self).__init__(name="SamsungTVCtl")
 
     @classproperty
     def runtime_requirements(self):
@@ -88,6 +27,68 @@ class SamsungTVCtl(MycroftSkill):
                                    no_gui_fallback=False)
 
     def initialize(self):
+        DEFAULT_SETTINGS = {
+            "__mycroft_skill_firstrun": "false",
+            "tv": "192.168.178.91",
+            "port": 55000,
+            "placement": "Stube",
+            "method": "legacy",
+            "rc_name": "Ovos",
+            "description_rc": "Beschreibung",
+            "translations": {
+                "hoch": "UP",
+                "höher": "UP",
+                "rauf": "UP",
+                "nach_oben": "UP",
+                "tiefer": "DOWN",
+                "runter": "DOWN",
+                "nach_unten": "DOWN",
+                "links": "LEFT",
+                "rechts": "RIGHT",
+                "nehmen": "ENTER",
+                "verlassen": "EXIT"
+            },
+            "channels": {
+                "das_erste": 1,
+                "erstes_programm": 1,
+                "zdf": 2,
+                "zweites_programm": 2,
+                "ndr": 101,
+                "3sat": 11,
+                "arte": 153,
+                "one": 127,
+                "zdf_neo": 202,
+                "phoenix": 152,
+                "phönix": 152,
+                "zdf_info": 201,
+                "vox": 1204,
+                "sat_1": 1205,
+                "pro_sieben": 1206,
+                "pro_7": 1206,
+                "prosieben": 1206,
+                "kabel_1": 1207,
+                "rtl": 315,
+                "rtl_2": 1209,
+                "super_rtl": 1219,
+                "ntv": 1264,
+                "rtl_nitro": 1265,
+                "rbb": 24,
+                "br": 31,
+                "bayerischer_rundfunk": 31,
+                "hr": 32,
+                "hessischer_rundfunk": 32,
+                "bw": 33,
+                "baden-württemberg": 33,
+                "wdr": 110,
+                "westdeutscher_rundfunk": 110,
+                "mdr": 115,
+                "mitteldeutscher_rundfunk": 115,
+                "ard_alpha": 125,
+                "tagesschau_24": 126,
+                "radio_bremen": 1128
+            }
+        }
+        self.settings.merge(DEFAULT_SETTINGS, new_only=True)
         self.settings_change_callback = self.on_settings_changed
         self.on_settings_changed()
         self.same_device = DeviceApi()
@@ -102,12 +103,7 @@ class SamsungTVCtl(MycroftSkill):
         self.method = self.settings.get('method')
         self.description_rc = self.settings.get('description_rc')
         self.translations = self.settings.get('translations')
-        #self.trans = self.translations.split(',')
-        #self.curs_move_dict = {self.trans[0]: 'LEFT', self.trans[1]: 'RIGHT', \
-            #self.trans[2]: 'UP', self.trans[3]: 'DOWN', \
-            #self.trans[4]: 'ENTER', self.trans[5]: 'EXIT'}
         self.channels = self.settings.get('channels')
-
         self.config = {"name": self.name_rc, "description": self.description_rc,\
             "id": "", "host": self.host, "port": self.port, "method": self.method,\
             "timeout": 0}
@@ -152,28 +148,9 @@ class SamsungTVCtl(MycroftSkill):
         move = ""
         return move
 
-"""    def cursor_recursion(self, move):
-        '''Recursive function to handle cursor movements'''
-        move = self.get_response('cursor_dummy',0)
-        if move == None:
-            keycode = "EXIT"
-            self.send_keycode(keycode)
-            return
-        if move == self.trans[4]:
-            keycode = "ENTER"
-            self.send_keycode(keycode)
-            return
-        if move == self.trans[5]:
-            keycode = "EXIT"
-            self.send_keycode(keycode)
-            return
-        keycode = self.curs_move_dict[move]
-        self.send_keycode(keycode)
-        move = ""
-        self.cursor_recursion(move)
-"""
-    def cursor_recursion2(self, move):
+    def cursor_recursion(self, move):
         move = self.get_response()
+        move = move.replace(" ","_").lower()
         if move != None:
             move = move.lower()
             LOG.info("Bewegung: " + move)
@@ -191,8 +168,8 @@ class SamsungTVCtl(MycroftSkill):
             else:
                 self.send_keycode(keycode)
                 move = ""
-                time.sleep(1)
-                self.cursor_recursion2(move)
+                time.sleep(.3)
+                self.cursor_recursion(move)
         else:
             self.speak_dialog('unknown.move', {'move': move})
             keycode = "EXIT"
@@ -271,35 +248,35 @@ class SamsungTVCtl(MycroftSkill):
         keycode = "CH_LIST"
         self.send_keycode(keycode)
         move = ""
-        self.cursor_recursion2(move)
+        self.cursor_recursion(move)
 
     @intent_handler('program_guide_dialog.intent')
     def handle_program_guide(self):
         keycode = "GUIDE"
         self.send_keycode(keycode)
         move = self.explain_cursor_moves(self.translations)
-        self.cursor_recursion2(move)
+        self.cursor_recursion(move)
 
     @intent_handler('source_dialog.intent')
     def handle_source(self):
         keycode = "SOURCE"
         self.send_keycode(keycode)
         move = self.explain_cursor_moves_source()
-        self.cursor_recursion2(move)
+        self.cursor_recursion(move)
 
     @intent_handler('smarthub_dialog.intent')
     def handle_smarthub(self):
         keycode = "CONTENTS"
         self.send_keycode(keycode)
         move = self.explain_cursor_moves()
-        self.cursor_recursion2(move)
+        self.cursor_recursion(move)
 
     @intent_handler('tools.intent')
     def handle_tools(self):
         keycode = "TOOLS"
         self.send_keycode(keycode)
         move = self.explain_cursor_moves()
-        self.cursor_recursion2(move)
+        self.cursor_recursion(move)
 
 #recording and playback handlers
     @intent_handler('pause.intent')
@@ -347,5 +324,5 @@ class SamsungTVCtl(MycroftSkill):
         pass
 
 def create_skill():
-    return SamsungTVCtl()
+    return SamsungTVCtrl()
 
