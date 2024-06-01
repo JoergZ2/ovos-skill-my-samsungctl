@@ -12,7 +12,7 @@ import samsungctl
 
 class SamsungTVCtrl(MycroftSkill):
     def __init__(self):
-        super(SamsungTVCtrl, self).__init__(name="SamsungTVCtl")
+        super(SamsungTVCtrl, self).__init__(name="SamsungTVCtrl")
 
     @classproperty
     def runtime_requirements(self):
