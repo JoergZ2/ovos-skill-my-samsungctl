@@ -1,6 +1,6 @@
 from ovos_workshop.decorators import intent_handler
 from ovos_workshop.skills import OVOSSkill
-from mycroft.util import extract_number
+import lingua_franca
 from ovos_backend_client.api import DeviceApi
 from ovos_utils import classproperty
 from ovos_utils.process_utils import RuntimeRequirements
