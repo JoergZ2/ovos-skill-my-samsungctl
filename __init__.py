@@ -11,9 +11,9 @@ import os
 import time
 import samsungctl
 
-class SamsungTVCtrl(OVOSSkill):
+class SamsungTVCtl(OVOSSkill):
     def __init__(self):
-        super(SamsungTVCtrl, self).__init__(name="SamsungTVCtrl")
+        super(SamsungTVCtl, self).__init__(name="SamsungTVCtl")
 
     @classproperty
     def runtime_requirements(self):
@@ -325,5 +325,5 @@ class SamsungTVCtrl(OVOSSkill):
         pass
 
 def create_skill():
-    return SamsungTVCtrl()
+    return SamsungTVCtl()
 
