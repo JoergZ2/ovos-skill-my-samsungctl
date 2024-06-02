@@ -1,7 +1,8 @@
-from mycroft import MycroftSkill, intent_handler
-from mycroft.util import extract_number
+from ovos_workshop.decorators import intent_handler
+from ovos_workshop.skills import OVOSSkill
+from ovos_utils import extract_number
+#from mycroft.util import extract_number
 from ovos_backend_client.api import DeviceApi
-from ovos_workshop.skills import MycroftSkill
 from ovos_utils import classproperty
 from ovos_utils.process_utils import RuntimeRequirements
 from ovos_utils.log import LOG
@@ -10,7 +11,7 @@ import os
 import time
 import samsungctl
 
-class SamsungTVCtrl(MycroftSkill):
+class SamsungTVCtrl(OVOSSkill):
     def __init__(self):
         super(SamsungTVCtrl, self).__init__(name="SamsungTVCtrl")
 
