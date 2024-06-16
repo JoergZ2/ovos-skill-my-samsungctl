@@ -5,6 +5,7 @@ from ovos_backend_client.api import DeviceApi
 from ovos_utils import classproperty
 from ovos_utils.process_utils import RuntimeRequirements
 from ovos_utils.log import LOG
+from mycroft.util import extract_number
 import sys
 import os
 import time
@@ -223,6 +224,7 @@ class SamsungTVCtl(OVOSSkill):
     def handle_vol_up_multi(self, message):
         keycode = "VOLUP"
         steps = message.data.get('steps')
+        steps = extract_number(steps); steps = int(steps)
         for i in range(0,steps):
             self.send_keycode(keycode)
             time.sleep(.1)
@@ -237,6 +239,7 @@ class SamsungTVCtl(OVOSSkill):
     def handle_vol_down_multi(self, message):
         keycode = "VOLDOWN"
         steps = message.data.get('steps')
+        steps = extract_number(steps); steps = int(steps)
         for i in range(0,steps):
             self.send_keycode(keycode)
             time.sleep(.1)
