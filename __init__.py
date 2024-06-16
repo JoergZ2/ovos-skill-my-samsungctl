@@ -219,10 +219,28 @@ class SamsungTVCtl(OVOSSkill):
         keycode = "VOLUP"
         self.send_keycode(keycode)
 
+    @intent_handler('vol_up_multi.intent')
+    def handle_vol_up_multi(self, message):
+        keycode = "VOLUP"
+        steps = message.data.get('steps')
+        for i in range(0,steps):
+            self.send_keycode(keycode)
+            time.sleep(.1)
+            i +=1
+
     @intent_handler('vol_down.intent')
     def handle_vol_down(self):
         keycode = "VOLDOWN"
         self.send_keycode(keycode)
+
+    @intent_handler('vol_down_multi.intent')
+    def handle_vol_down_multi(self, message):
+        keycode = "VOLDOWN"
+        steps = message.data.get('steps')
+        for i in range(0,steps):
+            self.send_keycode(keycode)
+            time.sleep(.1)
+            i +=1
 
     @intent_handler('menu_leave.intent')
     def handle_menu_leave(self):
