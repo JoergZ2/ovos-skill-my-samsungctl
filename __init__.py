@@ -245,6 +245,16 @@ class SamsungTVCtl(OVOSSkill):
             time.sleep(.1)
             i +=1
 
+    @intent_handler('mute.intent')
+    def handle_mute(self, message):
+        keycode = "KEY_MUTE"
+        self.send_keycode(keycode)
+
+    @intent_handler('unmute.intent')
+    def handle_unmute(self, message):
+        keycode = "KEY_MUTE"
+        self.send_keycode(keycode)
+
     @intent_handler('menu_leave.intent')
     def handle_menu_leave(self):
         keycode = "EXIT"
