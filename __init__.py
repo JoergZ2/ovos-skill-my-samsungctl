@@ -131,7 +131,7 @@ class SamsungTVCtl(OVOSSkill):
             i = 0
             while i < len(pos):
                 self.send_keycode(pos[i])
-                time.sleep(.3)
+                time.sleep(.1)
                 i += 1
         else:
             self.send_keycode(pos)
