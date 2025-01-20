@@ -1,0 +1,11 @@
+Metadata-Version: 2.1
+Name: ovos-skill-my-samsungctl
+Version: 0.0.1
+Summary: Skill for controlling of some Samsung TVs
+Home-page: https://github.com/JoergZ2/ovos-skill-my-samsungctl
+Author: JoergZ2
+Author-email: 
+License: Apache2.0
+Keywords: ovos skill plugin
+License-File: LICENSE
+License-File: LICENSE.md

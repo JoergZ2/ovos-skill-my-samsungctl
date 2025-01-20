@@ -94,6 +94,11 @@ class SamsungTVCtl(OVOSSkill):
         self.on_settings_changed()
         self.same_device = DeviceApi()
         self.info = self.same_device.uuid
+        #self.settings["tv-neu"] = {"TV1": "BLA", "TV2": "BLUB"}
+        #self.settings.store()
+        #LOG.info(f"Neue settings: {str(self.settings)}.")
+        mypath = self.file_system.path
+        LOG.info(f"Systempfad ist: {self.file_system.path} oder {mypath}.")
 
     def on_settings_changed(self):
         self.curs_move_dict = {"nach links": "LEFT", "nach rechts": "RIGHT", "nach oben": "UP", "nach unten": "DOWN", "nehmen": "ENTER", "verlassen": "EXIT"}
@@ -131,7 +136,7 @@ class SamsungTVCtl(OVOSSkill):
             i = 0
             while i < len(pos):
                 self.send_keycode(pos[i])
-                time.sleep(.1)
+                time.sleep(.3)
                 i += 1
         else:
             self.send_keycode(pos)
@@ -244,16 +249,6 @@ class SamsungTVCtl(OVOSSkill):
             self.send_keycode(keycode)
             time.sleep(.1)
             i +=1
-
-    @intent_handler('mute.intent')
-    def handle_mute(self, message):
-        keycode = "KEY_MUTE"
-        self.send_keycode(keycode)
-
-    @intent_handler('unmute.intent')
-    def handle_unmute(self, message):
-        keycode = "KEY_MUTE"
-        self.send_keycode(keycode)
 
     @intent_handler('menu_leave.intent')
     def handle_menu_leave(self):
