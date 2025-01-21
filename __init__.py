@@ -187,6 +187,10 @@ class SamsungTVCtl(OVOSSkill):
         channel = str(channel)
         self.send_channel_pos(channel)
 
+    def switch_by_channel_number(self, channel):
+        channel = str(channel)
+        self.send_channel_pos(channel)
+
     #checks if spoken channel is in channel list (settings.json); if true fetch channel number
     def check_channel(self, channel):
         channel_wrong = channel
@@ -203,6 +207,11 @@ class SamsungTVCtl(OVOSSkill):
     def handle_channel_by_name(self, message):
         channel = message.data.get('channel')
         self.switch_by_channel_name(channel)
+
+    @intent_handler('channel.by.number.intent')
+    def handle_channel_by_name(self, message):
+        channel = message.data.get('channel')
+        self.switch_by_channel_number(channel)
 
     @intent_handler('next_channel.intent')
     def handle_next_channel(self):
