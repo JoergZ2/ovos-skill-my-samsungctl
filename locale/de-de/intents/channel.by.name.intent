@@ -1,5 +1,5 @@
-fernseher auf {channel} umschalten
-fernseher umschalten auf {channel}
-fernseher programm {channel}
-fernseher sendername {channel}
-fernseher sender name {channel}
+(glotze|fernseher) auf {channel} umschalten
+(glotze|fernseher) umschalten auf {channel}
+(glotze|fernseher) programm {channel}
+(glotze|fernseher) sendername {channel}
+(glotze|fernseher) sender name {channel}
