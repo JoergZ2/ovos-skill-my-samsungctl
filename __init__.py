@@ -211,7 +211,8 @@ class SamsungTVCtl(OVOSSkill):
 
     @intent_handler('channel.by.number.intent')
     def handle_channel_by_name(self, message):
-        LOG.info("Inhalt von message: " + str(message))
+        utt = message.data.get()
+        LOG.info("Inhalt von message: " + str(utt))
         channel = message.data.get('channel')
         self.switch_by_channel_number(channel)
 
