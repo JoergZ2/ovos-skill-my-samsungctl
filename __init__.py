@@ -97,10 +97,8 @@ class SamsungTVCtl(OVOSSkill):
         #self.settings["tv-neu"] = {"TV1": "BLA", "TV2": "BLUB"}
         #self.settings.store()
         #LOG.info(f"Neue settings: {str(self.settings)}.")
-        mypath = self.file_system.path
-        LOG.info(f"Systempfad ist: {self.file_system.path} oder {mypath}.")
-        self.skill_id = "99"
-        LOG.info("Skill_ID: " + str(self.skill_id))
+        #mypath = self.file_system.path
+        #LOG.info(f"Systempfad ist: {self.file_system.path} oder {mypath}.")
 
     def on_settings_changed(self):
         self.curs_move_dict = {"nach links": "LEFT", "nach rechts": "RIGHT", "nach oben": "UP", "nach unten": "DOWN", "nehmen": "ENTER", "verlassen": "EXIT"}
