@@ -267,6 +267,11 @@ class SamsungTVCtl(OVOSSkill):
             time.sleep(.1)
             i +=1
 
+    @intent_handler('mute.intent')
+    def handle_mute(self):
+        keycode = "MUTE"
+        self.send_keycode(keycode)
+
     @intent_handler('menu_leave.intent')
     def handle_menu_leave(self):
         keycode = "EXIT"
@@ -343,12 +348,12 @@ class SamsungTVCtl(OVOSSkill):
         self.send_keycode(keycode)
 
     @intent_handler('rewind.intent')
-    def handle_recording(self):
+    def handle_rewind(self):
         keycode = "REWIND"
         self.send_keycode(keycode)
 
     @intent_handler('fastforward.intent')
-    def handle_recording(self):
+    def handle_fastforward(self):
         keycode = "FF"
         self.send_keycode(keycode)
 
