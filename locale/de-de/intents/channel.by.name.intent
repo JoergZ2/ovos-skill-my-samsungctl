@@ -1,5 +1,4 @@
-(den|die|das| ) (glotze|fernseher|fernsehgerät|tv) auf {channel} umschalten
-(den|die|das| ) (glotze|fernseher|fernsehgerät|tv) umschalten auf {channel}
 (glotze|fernseher) programm {channel}
 (glotze|fernseher) sendername {channel}
-(glotze|fernseher) sender name {channel}
+(glotze|fernseher) (kanal|station) {channel}
+(glotze|fernseher) sender {channel}
