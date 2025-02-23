@@ -354,12 +354,12 @@ class SamsungTVCtl(OVOSSkill):
 
 #source handlers
     @intent_handler('hdmi.intent')
-    def handle_recording(self):
+    def handle_hdmi(self):
         keycode = "HDMI"
         self.send_keycode(keycode)
 
     @intent_handler('dtv.intent')
-    def handle_recording(self):
+    def handle_dtv(self):
         keycode = "DTV"
         self.send_keycode(keycode)
 
