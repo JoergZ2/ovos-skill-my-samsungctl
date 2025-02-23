@@ -119,9 +119,8 @@ class SamsungTVCtl(OVOSSkill):
         '''Standard function for sending keycodes'''
         keycode = "KEY_" + keycode.upper()
         try:
-            LOG.info("Keycode ist: " + str(keycode))
-            #with samsungctl.Remote(self.config) as remote:
-            #    remote.control(keycode)
+            with samsungctl.Remote(self.config) as remote:
+                remote.control(keycode)
         except Exception as e:
             LOG.info(str(e))
         finally:
