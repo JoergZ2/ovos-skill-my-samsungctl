@@ -1,11 +1,10 @@
 from ovos_workshop.decorators import intent_handler
 from ovos_workshop.skills import OVOSSkill
 import lingua_franca
-from ovos_backend_client.api import DeviceApi
 from ovos_utils import classproperty
 from ovos_utils.process_utils import RuntimeRequirements
 from ovos_utils.log import LOG
-from mycroft.util import extract_number
+from lingua_franca.parse import extract_number
 import sys
 import os
 import time
@@ -92,13 +91,6 @@ class SamsungTVCtl(OVOSSkill):
         self.settings.merge(DEFAULT_SETTINGS, new_only=True)
         self.settings_change_callback = self.on_settings_changed
         self.on_settings_changed()
-        self.same_device = DeviceApi()
-        self.info = self.same_device.uuid
-        #self.settings["tv-neu"] = {"TV1": "BLA", "TV2": "BLUB"}
-        #self.settings.store()
-        #LOG.info(f"Neue settings: {str(self.settings)}.")
-        #mypath = self.file_system.path
-        #LOG.info(f"Systempfad ist: {self.file_system.path} oder {mypath}.")
 
     def on_settings_changed(self):
         self.curs_move_dict = {"nach links": "LEFT", "nach rechts": "RIGHT", "nach oben": "UP", "nach unten": "DOWN", "nehmen": "ENTER", "verlassen": "EXIT"}
