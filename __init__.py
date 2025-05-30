@@ -11,8 +11,9 @@ import time
 import samsungctl
 
 class SamsungTVCtl(OVOSSkill):
-    def __init__(self):
-        super(SamsungTVCtl, self).__init__(name="SamsungTVCtl")
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.override = True
 
     @classproperty
     def runtime_requirements(self):
