@@ -197,12 +197,12 @@ class SamsungTVCtl(OVOSSkill):
 #basic handlers
     @intent_handler('channel.by.name.intent')
     def handle_channel_by_name(self, message):
-        channel = message.data.get('channel')
+        channel = message.data.get('channel_name')
         self.switch_by_channel_name(channel)
 
     @intent_handler('channel.by.number.intent')
     def handle_channel_by_number(self, message):
-        channel = message.data.get('channel')
+        channel = message.data.get('channel_nr')
         self.switch_by_channel_number(channel)
 
 
@@ -215,12 +215,6 @@ class SamsungTVCtl(OVOSSkill):
     def handle_prev_channel(self):
         keycode = "CHDOWN"
         self.send_keycode(keycode)
-
-    @intent_handler('pos.intent')
-    def handle_switch_to_pos(self, message):
-        pos = message.data.get('pos_nr')
-        pos = extract_number(pos); pos=str(int(pos))
-        self.send_channel_pos(pos)
 
     @intent_handler('vol_up.intent')
     def handle_vol_up(self):

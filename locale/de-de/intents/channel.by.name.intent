@@ -1,4 +1,4 @@
-(glotze|fernseher) programm {channel}
-(glotze|fernseher) sendername {channel}
-(glotze|fernseher) (kanal|station) {channel}
-(glotze|fernseher) sender {channel}
+(glotze|fernseher) programm {channel_name}
+(glotze|fernseher) sendername {channel_name}
+(glotze|fernseher) (kanal|station) {channel_name}
+(glotze|fernseher) sender {channel_name}
