@@ -152,9 +152,8 @@ class SamsungTVCtl(OVOSSkill):
         move = move.replace(" ","_").lower()
         if move != None:
             move = move.lower()
-            LOG.info("Bewegung: " + move)
         else:
-            LOG.info("Move ist None")
+            LOG.debug("Move ist None")
         if move == None:
             keycode = "EXIT"
             self.send_keycode(keycode)
@@ -187,7 +186,7 @@ class SamsungTVCtl(OVOSSkill):
     #checks if spoken channel is in channel list (settings.json); if true fetch channel number
     def check_channel(self, channel):
         channel_wrong = channel
-        LOG.info("channel ist: " + str(channel))
+        LOG.debug("channel ist: " + str(channel))
         channel = self.channels.get(channel, None)
         if channel != None:
             return channel
